@@ -17,7 +17,7 @@
       <div data-role="content" style="background-color: white;"> 
 
         <p style="font-size:18px; color:black; margin-top:20px; margin-left:20px">
-          <span>1. 請確認機台序號是:</span><span id="testMachineSN">T21003317</span>
+          <span>1. 請確認機台序號是:</span><span id="testMachineSN">T22000599</span>
         </p>
         <!--<p id="所在健身房說明" style="font-size:16px; color:black; width:80%; margin-left:40px;; margin-bottom:5px"></p>-->
         
@@ -72,7 +72,7 @@
       function kendoViewReady() {
         console.log( "ready!" );
         
-        $("#預設常用健身房標籤").text("潮州三星 "+預設常用健身房); 
+        $("#預設常用健身房標籤").text("客戶名稱 "+預設常用健身房); 
         $("#所在健身房說明").text("如果目前不在 "+預設常用健身房+ " ，請到個人資料(首頁右上角圖示)修改預設常用健身房，再回來測量。");
 //        for (var i=0; i<店面名稱.length;i++) {
 //          
@@ -160,7 +160,7 @@
         //}
          
         // Check if Device is in use
-        paramToSend = "?API=31" + "&CustomerId=潮州三星&StoreId=社區發展協會"; //+預設常用健身房;      
+        paramToSend = "?API=31" + "&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房; //+預設常用健身房;      
         var res = await callAPI(paramToSend, '讀取機器狀態');
         console.log(res);
         var machineStatus = res.split(",");
@@ -179,7 +179,7 @@
         }
         
         
-        //if (confirm("為了您的權益，請檢查是在潮州三星 "+預設常用健身房+" 身體組成分析儀 序號:"+機器序號+"上進行量測。\n\n序號可在機器上查對")) { 
+        //if (confirm("為了您的權益，請檢查是在客戶名稱 "+預設常用健身房+" 身體組成分析儀 序號:"+機器序號+"上進行量測。\n\n序號可在機器上查對")) { 
         if (confirm("請確定是在 身體組成分析儀 序號:"+機器序號+"上進行量測。\n\n序號可在機器上查對")) { 
           $("#開始測量按鈕").attr("disabled", true);
           $("#開始測量按鈕").css("background-color", "gray"); 
@@ -193,7 +193,7 @@
           
           $(".km-back").css("visibility", "hidden");
         
-          paramToSend = "?API=20&UserId="+userId[1]+"&CustomerId=潮州三星&StoreId="+預設常用健身房+"&PhoneNumber="+$("#formUserPhone").val();
+          paramToSend = "?API=20&UserId="+userId[1]+"&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房+"&PhoneNumber="+$("#formUserPhone").val();
           console.log(paramToSend);           
           var res = await callAPI(paramToSend, '讀取店面名稱');
           console.log(res); 
@@ -214,7 +214,7 @@
         clearInterval(checkStatusInterval);   
         
         // 透過 ASPI=21 取消 量測要求
-        paramToSend = "?API=21&UserId="+userId[1]+"&CustomerId=潮州三星&StoreId="+預設常用健身房;
+        paramToSend = "?API=21&UserId="+userId[1]+"&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房;
         var res = await callAPI(paramToSend, '');
         var 取消量測回覆=res;
         console.log(取消量測回覆); 
@@ -231,7 +231,7 @@
       ];
       
       async function checkMeasurementStatus(){
-        paramToSend = "?API=22&UserId="+userId[1]+"&CustomerId=潮州三星&StoreId="+預設常用健身房;
+        paramToSend = "?API=22&UserId="+userId[1]+"&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房;
         var res = await callAPI(paramToSend, '');
         var 現在量測狀態=res;
         console.log(現在量測狀態); 
@@ -284,7 +284,7 @@
             // 移除已完成的 量測要求
             // ugly fix 避免在 API 還在用 量測要求 時就刪除掉 
             setTimeout(async function(){
-              paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId=潮州三星&StoreId="+預設常用健身房;
+              paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房;
               var res = await callAPI(paramToSend, '');            
               console.log(res)}, 500);         
             
@@ -292,7 +292,7 @@
           case "機台要求取消":
             clearInterval(checkStatusInterval);             
             alert("機台端取消量測"); 
-            paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId=潮州三星&StoreId="+預設常用健身房;
+            paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房;
             var res = await callAPI(paramToSend, ''); 
             console.log(res);
             app.navigate("#:back");  
@@ -301,7 +301,7 @@
           case "機台已有人在使用":
             clearInterval(checkStatusInterval);             
             alert("機台已有人在使用"); 
-            paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId=潮州三星&StoreId="+預設常用健身房;
+            paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房;
             var res = await callAPI(paramToSend, ''); 
             console.log(res);
             app.navigate("#:back");       
@@ -311,7 +311,7 @@
             console.log("未知量測狀態");
             clearInterval(checkStatusInterval);   
             alert("未知量測狀態"); 
-            paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId=潮州三星&StoreId="+預設常用健身房;
+            paramToSend = "?API=23&UserId="+userId[1]+"&CustomerId="+客戶名稱+"&StoreId="+預設常用健身房;
             var res = await callAPI(paramToSend, ''); 
             console.log(res);
             app.navigate("#:back");       

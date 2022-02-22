@@ -284,9 +284,10 @@ async function checkUserIdExist() {
     
     // formEmergencyPhone 挪來用為 常用預設健身房
     //預設常用健身房 = (userProfile[11]=="undefined")? "永和店":userProfile[11];
-    //$("#預設常用健身房").val(預設常用健身房); 
-    客戶名稱 = "潮州三星"; // 需與 Firebase 上名稱一致
-    預設常用健身房 ="社區發展協會";
+
+    //客戶名稱 = "潮州三星"; // 需與 Firebase 上名稱一致
+    //預設常用健身房 ="社區發展協會";
+    $("#預設常用健身房").val(預設常用健身房);     
       
     $("#LINE頭像").attr("src", userProfile[7]);
     

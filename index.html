@@ -7,8 +7,14 @@
 <html>
 
 <head>
+  <script> 
+    // custom portion
+    客戶名稱 = "潮州三星"; // 需與 Firebase 上名稱一致
+    預設常用健身房 ="社區發展協會";    
+  </script>
+
   <script>
-    var useLocalAPIs = true;
+    var useLocalAPIs = false;
 //    try {
 //      console.log(process.env.useLocalAPIs);
 //    }catch(e){
@@ -19,7 +25,7 @@
   <title></title>
 
   <!-- LINE Opengraph https://developers.line.biz/en/faq/tags/media/#how-are-the-url-previews-generated -->
-  <meta property="og:image" content="https://raw.githubusercontent.com/Charder-uGym/instant-fitness-bodyMeasureLINE/main/instance-fitness.png" />  
+  <!--<meta property="og:image" content="https://raw.githubusercontent.com/Charder-uGym/instant-fitness-bodyMeasureLINE/main/instance-fitness.png" />   -->
   <meta property="og:title" content="身體量測系統" />
   <meta property="og:description" content=""/>
   <!-- End LINE Opengraph -->
@@ -143,7 +149,7 @@
     <h3 class="NotoSansFont" style="margin-top: 2em; color: darkslategray; font-weight: bold">身體量測系統</h3>
   </div>
     
-  <div data-role="view" data-title="潮州三星社區發展協會 身體組成自動量測系統" style="font-family: 'Noto Sans TC'" id="mainDiv" data-layout="" data-reload="false">
+  <div data-role="view" data-title="潮州三星社區發展協會" style="font-family: 'Noto Sans TC'" id="mainDiv" data-layout="" data-reload="false">
     <header data-role="header">
       <div data-role="navbar" id="normal" class="km-accent">
 
@@ -157,8 +163,9 @@
     
     <footer style="display: none"></footer>
  
-    <div style="height:190px; background-color:white; text-align:center">
-      <img src="instance-fitness1.png" height="100px" style="margin-top:10px;margin-bottom:10px"><br>
+    <div style="height:80px; background-color:white; text-align:center">
+      <!-- 無 logo <img src="instance-fitness1.png" height="100px" style="margin-top:10px;margin-bottom:10px"><br> -->
+      <br>
       <span id="量測記錄title" class="進行量測Label" style="float:left; padding-top: 10px">量測記錄</span>
       <a class="" style="font-size: 18px; color: white; float:right;margin-right:15px; background-color:#FF4350; padding:10px;border-radius:8px " onclick="送出量測要求()">進行量測</a> 
 
